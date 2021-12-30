@@ -7,7 +7,6 @@
   "repository": "https://github.com/ouuan/luogu-motaki-plan-editor",
   "author": "Yufan You <ouuansteve@gmail.com> (https://github.com/ouuan)",
   "license": "Apache-2.0",
-  "private": true,
   "scripts": {
     "lint:nofix": "eslint . --ignore-path .gitignore --ext .ts",
     "lint": "pnpm lint:nofix --fix",
