@@ -37,16 +37,18 @@ export default async function add(
     imageQuantization,
     width,
     height,
+    override,
   }: {
     colorDistanceFormula: ColorDistanceFormula,
     imageQuantization: ImageQuantization,
     width?: string,
     height?: string,
+    override?: boolean,
   },
 ) {
   const plan = await loadPlan();
 
-  if (plan[name]) throw new MotakiError(`the name [${name}] is already in use`);
+  if (!override && plan[name]) throw new MotakiError(`the name [${name}] is already in use`);
 
   const lx = parseInt(leftX, 10);
   if (!Number.isSafeInteger(lx) || !inRange(0, WIDTH)) throw new MotakiError(`"${leftX}" is not a valid x coordinate`);

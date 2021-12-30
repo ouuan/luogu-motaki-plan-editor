@@ -17,6 +17,7 @@ cmd.command('add <name> <imageFilePath> <leftX> <topY>')
   .description('add a new task')
   .option('--width <width>', 'resize image, set width')
   .option('--height <height>', 'resize image, set height')
+  .option('--override', 'allow overriding existing task')
   .addOption(
     new Option('--colorDistanceFormula <formula>', 'set color distance formula for image quantization')
       .choices(colorDistanceFormulas as any as string[]) // https://github.com/tj/commander.js/pull/1667
