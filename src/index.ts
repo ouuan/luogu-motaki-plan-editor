@@ -21,7 +21,7 @@ cmd.command('add <name> <imageFilePath> <leftX> <topY>')
   .addOption(
     new Option('--colorDistanceFormula <formula>', 'set color distance formula for image quantization')
       .choices(colorDistanceFormulas as any as string[]) // https://github.com/tj/commander.js/pull/1667
-      .default('pngquant'),
+      .default('color-metric'),
   )
   .addOption(
     new Option('--imageQuantization <method>', 'set image quantization method')
