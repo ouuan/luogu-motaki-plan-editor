@@ -10,7 +10,7 @@ import validate from './validate';
 
 const cmd = new Command();
 
-cmd.version('0.0.1');
+cmd.version('0.1.0');
 cmd.showSuggestionAfterError();
 
 cmd.command('add <name> <imageFilePath> <leftX> <topY>')

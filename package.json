@@ -1,6 +1,6 @@
 {
   "name": "luogu-motaki-plan-editor",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Luogu Motaki 的方案编辑器 —— 洛谷冬日绘板图片转数据",
   "main": "dist/index.js",
   "bin": "dist/index.js",
