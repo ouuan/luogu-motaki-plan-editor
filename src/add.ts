@@ -104,7 +104,7 @@ export default async function add(
   let data = '';
   for (let i = 0; i < finalWidth; i += 1) {
     for (let j = 0; j < finalHeight; j += 1) {
-      const index = i * finalHeight + j;
+      const index = i + j * finalWidth;
       const point = pointArr[index];
       data += indexInPalette(point).toString(32);
     }
