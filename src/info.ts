@@ -17,7 +17,7 @@ export default async function info(args: string[]) {
       const height = lines[0].length;
       console.log(`Name:  ${name}`);
       console.log(`Range: (${x}, ${y}) ~ (${x + width - 1}, ${y + height - 1})`);
-      console.log(`Size:  ${width} x ${height}\n`);
+      console.log(`Size:  ${width} x ${height} = ${width * height}\n`);
     } else {
       throw new MotakiError(`task [${name}] does not exist`);
     }
