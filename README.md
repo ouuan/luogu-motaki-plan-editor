@@ -6,5 +6,12 @@
 
 ## 快速开始
 
-1.  `npm i -g luogu-motaki-plan-editor`
-2.  `luogu-motaki-plan-editor --help`
+```bash
+git clone https://github.com/ouuan/luogu-motaki-plan-editor
+cd luogu-motaki-plan-editor
+pnpm i
+pnpm build
+node . --help
+```
+
+(npm 上的包出了一些问题，用不了)
