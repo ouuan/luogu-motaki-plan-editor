@@ -27,6 +27,7 @@ export function validatePlan(plan: Plan): true | string {
         return `${prefix}data has different height in each column`;
       }
       for (let j = y; j < y + height; j += 1) {
+        if (Number.isNaN(parseInt(lines[i - x][j - y], 32))) return `${prefix}data contains invalid character`;
         const index = i * HEIGHT + j;
         if (vis[index]) return `${prefix}overlaps with another task`;
         vis[index] = true;
