@@ -12,7 +12,7 @@ export function isPlan(obj: object): obj is Plan {
 }
 
 export function validatePlan(plan: Plan): true | string {
-  const vis: {[index: number]: boolean} = {};
+  const vis: {[index: number]: string} = {};
   for (const [name, { x, y, data }] of Object.entries(plan)) {
     const prefix = `task [${name}]: `;
     if (!Number.isSafeInteger(x) || !Number.isSafeInteger(y)) return `${prefix}coordinate is not integer`;
@@ -29,8 +29,8 @@ export function validatePlan(plan: Plan): true | string {
       for (let j = y; j < y + height; j += 1) {
         if (Number.isNaN(parseInt(lines[i - x][j - y], 32))) return `${prefix}data contains invalid character`;
         const index = i * HEIGHT + j;
-        if (vis[index]) return `${prefix}overlaps with another task`;
-        vis[index] = true;
+        if (vis[index]) return `${prefix}overlaps with task [${vis[index]}]`;
+        vis[index] = name;
       }
     }
   }

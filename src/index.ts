@@ -3,6 +3,7 @@ import add from './add';
 import { colorDistanceFormulas, imageQuantizations, PLAN_FILE } from './constants';
 import MotakiError from './error';
 import info from './info';
+import merge from './merge';
 import move from './move';
 import rename from './rename';
 import rm from './rm';
@@ -58,10 +59,16 @@ cmd.command('validate')
   .addOption(planPathOption)
   .action(validate);
 
+cmd.command('merge <planPaths...>')
+  .description('merge multiple plans into a single plan')
+  .addOption(planPathOption)
+  .action(merge);
+
 cmd.parseAsync(process.argv)
   .catch((e) => {
     if (e instanceof MotakiError) {
       // eslint-disable-next-line no-console
       console.error(`error: ${e.msg}`);
+      process.exit(1);
     } else throw e;
   });

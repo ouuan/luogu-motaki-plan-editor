@@ -8,6 +8,8 @@ export async function loadPlan(planPath: string): Promise<Plan> {
   try {
     buffer = await readFile(planPath);
   } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn(`failed to open [${planPath}], using an empty plan`);
     return {};
   }
   const plan = JSON.parse(buffer.toString());
