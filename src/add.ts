@@ -70,7 +70,7 @@ export default async function add(
     let scaleY = 1;
     if (width) {
       finalWidth = parseInt(width, 10);
-      if (!Number.isSafeInteger(finalWidth) || finalWidth === 0) throw new MotakiError(`Invalid width: ${width}`);
+      if (!Number.isSafeInteger(finalWidth) || finalWidth <= 0) throw new MotakiError(`Invalid width: ${width}`);
       scaleX = finalWidth / image.width;
     }
     if (!height) {
@@ -78,7 +78,7 @@ export default async function add(
       finalHeight = Math.ceil(image.height * scaleY);
     } else {
       finalHeight = parseInt(height, 10);
-      if (!Number.isSafeInteger(finalHeight) || finalHeight === 0) throw new MotakiError(`Invalid height: ${height}`);
+      if (!Number.isSafeInteger(finalHeight) || finalHeight <= 0) throw new MotakiError(`Invalid height: ${height}`);
       scaleY = finalHeight / image.height;
       if (!width) {
         scaleX = scaleY;
