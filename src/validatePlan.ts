@@ -14,6 +14,7 @@ export function isPlan(obj: object): obj is Plan {
 export function validatePlan(plan: Plan): true | string {
   const vis: {[index: number]: string} = {};
   for (const [name, { x, y, data }] of Object.entries(plan)) {
+    if (/\s/.test(name)) return `task name [${name}] contains white space(s)`;
     const prefix = `task [${name}]: `;
     if (!Number.isSafeInteger(x) || !Number.isSafeInteger(y)) return `${prefix}coordinate is not integer`;
     if (!inRange(x, 0, WIDTH) || !inRange(y, 0, HEIGHT)) return `${prefix}coordinate out of range`;
