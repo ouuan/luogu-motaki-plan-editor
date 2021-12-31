@@ -2,9 +2,9 @@
 import MotakiError from './error';
 import { loadPlan } from './io';
 
-export default async function validate() {
+export default async function validate({ planPath }: {planPath: string}) {
   try {
-    await loadPlan();
+    await loadPlan(planPath);
     console.log('motaki-plan.json is valid');
   } catch (err) {
     if (err instanceof MotakiError) {

@@ -10,7 +10,7 @@
   "scripts": {
     "lint:nofix": "eslint . --ignore-path .gitignore --ext .ts",
     "lint": "pnpm lint:nofix --fix",
-    "build": "node esbuild.js"
+    "build": "tsc --noEmit && node esbuild.js"
   },
   "dependencies": {
     "canvas": "^2.8.0",

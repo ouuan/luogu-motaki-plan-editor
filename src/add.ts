@@ -33,12 +33,14 @@ export default async function add(
   leftX: string,
   topY: string,
   {
+    planPath,
     colorDistanceFormula,
     imageQuantization,
     width,
     height,
     override,
   }: {
+    planPath: string,
     colorDistanceFormula: ColorDistanceFormula,
     imageQuantization: ImageQuantization,
     width?: string,
@@ -46,7 +48,7 @@ export default async function add(
     override?: boolean,
   },
 ) {
-  const plan = await loadPlan();
+  const plan = await loadPlan(planPath);
 
   if (!override && plan[name]) throw new MotakiError(`the name [${name}] is already in use`);
 
@@ -113,5 +115,5 @@ export default async function add(
 
   plan[name] = { x: lx, y: ty, data };
 
-  await savePlan(plan);
+  await savePlan(plan, planPath);
 }

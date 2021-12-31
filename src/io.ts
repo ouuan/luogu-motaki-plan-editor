@@ -1,25 +1,24 @@
 import { readFile, writeFile } from 'fs/promises';
-import { PLAN_FILE } from './constants';
 import MotakiError from './error';
 import { Plan } from './types';
 import { isPlan, validatePlan } from './validatePlan';
 
-export async function loadPlan(): Promise<Plan> {
+export async function loadPlan(planPath: string): Promise<Plan> {
   let buffer;
   try {
-    buffer = await readFile(PLAN_FILE);
+    buffer = await readFile(planPath);
   } catch (e) {
     return {};
   }
   const plan = JSON.parse(buffer.toString());
-  if (!isPlan(plan)) throw new MotakiError('invalid motaki-plan.json format');
+  if (!isPlan(plan)) throw new MotakiError(`[${planPath}] has a wrong format`);
   const validate = validatePlan(plan);
-  if (validate !== true) throw new MotakiError(`invalid motaki-plan.json: ${validate}`);
+  if (validate !== true) throw new MotakiError(`[${planPath}] is invalid: ${validate}`);
   return plan;
 }
 
-export async function savePlan(plan: Plan) {
+export async function savePlan(plan: Plan, planPath: string) {
   const validate = validatePlan(plan);
   if (validate !== true) throw new MotakiError(`invalid plan after operation: ${validate}`);
-  return writeFile(PLAN_FILE, JSON.stringify(plan, null, 2));
+  return writeFile(planPath, JSON.stringify(plan, null, 2));
 }

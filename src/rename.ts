@@ -1,8 +1,12 @@
 import MotakiError from './error';
 import { loadPlan, savePlan } from './io';
 
-export default async function rename(oldName: string, newName: string) {
-  const plan = await loadPlan();
+export default async function rename(
+  oldName: string,
+  newName: string,
+  { planPath }: {planPath: string},
+) {
+  const plan = await loadPlan(planPath);
   if (!plan[oldName]) {
     throw new MotakiError(`task [${oldName}] does not exist`);
   }
@@ -11,5 +15,5 @@ export default async function rename(oldName: string, newName: string) {
   }
   plan[newName] = plan[oldName];
   delete plan[oldName];
-  await savePlan(plan);
+  await savePlan(plan, planPath);
 }

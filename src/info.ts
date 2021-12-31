@@ -2,8 +2,8 @@
 import MotakiError from './error';
 import { loadPlan } from './io';
 
-export default async function info(args: string[]) {
-  const plan = await loadPlan();
+export default async function info(args: string[], { planPath }: {planPath: string}) {
+  const plan = await loadPlan(planPath);
   const names = args.length ? args : Object.keys(plan);
   if (names.length === 0) {
     console.log('The plan is empty');
